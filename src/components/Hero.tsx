@@ -67,8 +67,8 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
     <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 py-16 sm:py-24">
       <div className="relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-            <div className="flex">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="flex justify-center">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
                 <BarChart2 className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
@@ -79,47 +79,47 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Understand how different sorting algorithms work by watching them in action. Compare efficiency, learn about time complexity, and see the step-by-step process of organizing data.
             </p>
-            <div className="mt-8 flex items-center gap-x-6">
-              <button
-                onClick={onStart}
-                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary flex items-center"
-              >
-                <ArrowDownAZ className="mr-2 h-4 w-4" />
-                Start Visualizing
-              </button>
-              <a href="#learn-more" className="text-sm font-semibold leading-6 text-gray-900">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-8">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="mx-auto max-w-2xl overflow-hidden rounded-xl shadow-lg">
-                <div className="bg-white p-4 h-64 flex items-center justify-center">
-                  <div className="text-center w-full">
-                    <div className="flex justify-center space-x-2">
-                      {array.map((height, i) => (
-                        <div 
-                          key={i}
-                          className="bg-primary w-8 rounded-t-md transition-all duration-500"
-                          style={{ 
-                            height: `${height}%`,
-                            transition: 'height 0.5s ease-in-out'
-                          }}
-                        >
-                          <div className="text-white font-bold text-sm mt-2">
-                            {height}
-                          </div>
+          
+          <div className="mt-12 sm:mt-16">
+            <div className="mx-auto max-w-2xl overflow-hidden rounded-xl shadow-lg">
+              <div className="bg-white p-4 h-64 flex items-center justify-center">
+                <div className="text-center w-full">
+                  <div className="flex justify-center space-x-2">
+                    {array.map((height, i) => (
+                      <div 
+                        key={i}
+                        className="bg-primary w-8 rounded-t-md transition-all duration-500"
+                        style={{ 
+                          height: `${height}%`,
+                          transition: 'height 0.5s ease-in-out'
+                        }}
+                      >
+                        <div className="text-white font-bold text-sm mt-2">
+                          {height}
                         </div>
-                      ))}
-                    </div>
-                    <p className="mt-4 text-sm text-gray-500">
-                      {sorting ? "Sorting in progress..." : "Sorting complete!"}
-                    </p>
+                      </div>
+                    ))}
                   </div>
+                  <p className="mt-4 text-sm text-gray-500">
+                    {sorting ? "Sorting in progress..." : "Sorting complete!"}
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="mt-8 flex items-center justify-center gap-x-6">
+            <button
+              onClick={onStart}
+              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary flex items-center"
+            >
+              <ArrowDownAZ className="mr-2 h-4 w-4" />
+              Start Visualizing
+            </button>
+            <a href="#learn-more" className="text-sm font-semibold leading-6 text-gray-900">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </div>
