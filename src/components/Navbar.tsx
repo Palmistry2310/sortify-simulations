@@ -1,6 +1,6 @@
 
-import React from "react";
-import { Github, Home } from "lucide-react";
+import React, { useState } from "react";
+import { ChevronDown, Github, Home, List } from "lucide-react";
 import { SortingAlgorithm } from "@/types/types";
 import { getAlgorithmInfo } from "@/utils/sortingAlgorithms";
 
@@ -17,6 +17,8 @@ const Navbar: React.FC<NavbarProps> = ({
   onGoHome,
   hasStarted = false,
 }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
   const algorithms: SortingAlgorithm[] = [
     "bubble",
     "selection",
@@ -24,6 +26,15 @@ const Navbar: React.FC<NavbarProps> = ({
     "merge",
     "quick",
   ];
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleAlgorithmSelect = (algorithm: SortingAlgorithm) => {
+    onAlgorithmChange(algorithm);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -50,21 +61,37 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
             
             {hasStarted && (
-              <nav className="ml-6 flex space-x-8">
-                {algorithms.map((algo) => (
-                  <button
-                    key={algo}
-                    onClick={() => onAlgorithmChange(algo)}
-                    className={`px-3 py-2 text-sm font-medium rounded-md ${
-                      currentAlgorithm === algo
-                        ? "bg-primary text-white"
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                  >
-                    {getAlgorithmInfo(algo).name}
-                  </button>
-                ))}
-              </nav>
+              <div className="ml-6 relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="px-3 py-2 text-sm font-medium rounded-md bg-primary text-white flex items-center"
+                >
+                  <List className="mr-2 h-4 w-4" />
+                  {getAlgorithmInfo(currentAlgorithm).name}
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                    <div className="py-1" role="menu" aria-orientation="vertical">
+                      {algorithms.map((algo) => (
+                        <button
+                          key={algo}
+                          onClick={() => handleAlgorithmSelect(algo)}
+                          className={`block w-full text-left px-4 py-2 text-sm ${
+                            currentAlgorithm === algo
+                              ? "bg-gray-100 text-primary font-medium"
+                              : "text-gray-700 hover:bg-gray-50"
+                          }`}
+                          role="menuitem"
+                        >
+                          {getAlgorithmInfo(algo).name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
           </div>
           <div className="flex items-center">
