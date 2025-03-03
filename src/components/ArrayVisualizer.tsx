@@ -28,19 +28,17 @@ const ArrayBar: React.FC<ArrayBarProps> = ({ value, state, height, index }) => {
         transform: state === "selected" ? "scale(1.05)" : "scale(1)",
       }}
     >
-      {value <= 99 && (
-        <span 
-          className="array-bar-label text-xs opacity-70"
-          style={{ 
-            color: state === "sorted" ? "#065f46" : 
-                   state === "comparing" ? "#92400e" : 
-                   state === "selected" ? "#be123c" : 
-                   state === "pivot" ? "#6b21a8" : "#1e3a8a" 
-          }}
-        >
-          {value}
-        </span>
-      )}
+      <span 
+        className="array-bar-label text-xs font-medium absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-black"
+        style={{ 
+          color: state === "sorted" ? "#065f46" : 
+                 state === "comparing" ? "#92400e" : 
+                 state === "selected" ? "#be123c" : 
+                 state === "pivot" ? "#6b21a8" : "#1e3a8a" 
+        }}
+      >
+        {value}
+      </span>
     </div>
   );
 };
@@ -63,7 +61,7 @@ const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
   };
 
   return (
-    <div className="visualizer-container">
+    <div className="visualizer-container pb-8"> {/* Added padding at the bottom for number labels */}
       {currentStep.array.map((value, index) => (
         <ArrayBar
           key={`${index}-${value}`}
