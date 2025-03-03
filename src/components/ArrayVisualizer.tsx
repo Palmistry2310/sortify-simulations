@@ -22,14 +22,22 @@ const ArrayBar: React.FC<ArrayBarProps> = ({ value, state, height, index }) => {
 
   return (
     <div
-      className={`array-bar ${getBarColor()}`}
+      className={`array-bar ${getBarColor()} relative flex flex-col justify-end items-center`}
       style={{
         height,
         transform: state === "selected" ? "scale(1.05)" : "scale(1)",
+        minWidth: "30px",
+        margin: "0 2px",
+        borderRadius: "4px 4px 0 0",
       }}
     >
       <span 
-        className="array-bar-label text-xs font-medium absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-black"
+        className="text-white font-medium text-xs mb-1"
+      >
+        {value}
+      </span>
+      <span 
+        className="array-bar-label text-xs font-medium absolute -bottom-6 left-1/2 transform -translate-x-1/2"
         style={{ 
           color: state === "sorted" ? "#065f46" : 
                  state === "comparing" ? "#92400e" : 
@@ -53,15 +61,15 @@ const ArrayVisualizer: React.FC<ArrayVisualizerProps> = ({
   maxValue,
 }) => {
   const getBarState = (index: number): "default" | "comparing" | "sorted" | "selected" | "pivot" => {
-    if (currentStep.pivotIndices.includes(index)) return "pivot";
-    if (currentStep.selectedIndices.includes(index)) return "selected";
-    if (currentStep.comparingIndices.includes(index)) return "comparing";
-    if (currentStep.sortedIndices.includes(index)) return "sorted";
+    if (currentStep.pivotIndices?.includes(index)) return "pivot";
+    if (currentStep.selectedIndices?.includes(index)) return "selected";
+    if (currentStep.comparingIndices?.includes(index)) return "comparing";
+    if (currentStep.sortedIndices?.includes(index)) return "sorted";
     return "default";
   };
 
   return (
-    <div className="visualizer-container pb-8"> {/* Added padding at the bottom for number labels */}
+    <div className="visualizer-container h-80 flex items-end justify-center pb-12 mb-8">
       {currentStep.array.map((value, index) => (
         <ArrayBar
           key={`${index}-${value}`}

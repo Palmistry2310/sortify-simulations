@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -202,11 +203,17 @@ const Index = () => {
     });
   };
 
+  const handleGoHome = () => {
+    setHasStarted(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <Navbar
         currentAlgorithm={algorithm}
         onAlgorithmChange={handleAlgorithmChange}
+        onGoHome={handleGoHome}
+        hasStarted={hasStarted}
       />
 
       {!hasStarted ? (

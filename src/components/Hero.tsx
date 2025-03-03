@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowDownAZ, BarChart2 } from "lucide-react";
 
 interface HeroProps {
@@ -7,6 +7,62 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onStart }) => {
+  // Sample array for sorting animation
+  const [array, setArray] = useState([35, 15, 80, 25, 65, 40, 55, 30]);
+  const [sorting, setSorting] = useState(false);
+
+  // Bubble sort animation
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let sortingArray = [...array];
+    let step = 0;
+    
+    const animateBubbleSort = () => {
+      if (step >= sortingArray.length - 1) {
+        setSorting(false);
+        // Reset and start again
+        setTimeout(() => {
+          setArray([35, 15, 80, 25, 65, 40, 55, 30]);
+          setSorting(true);
+        }, 2000);
+        return;
+      }
+
+      const newArray = [...sortingArray];
+      
+      for (let i = 0; i < sortingArray.length - step - 1; i++) {
+        if (newArray[i] > newArray[i + 1]) {
+          // Swap elements
+          const temp = newArray[i];
+          newArray[i] = newArray[i + 1];
+          newArray[i + 1] = temp;
+        }
+      }
+      
+      sortingArray = newArray;
+      setArray(newArray);
+      step++;
+      
+      timeoutId = setTimeout(animateBubbleSort, 800);
+    };
+
+    if (sorting) {
+      timeoutId = setTimeout(animateBubbleSort, 800);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [sorting, array]);
+
+  // Start the animation when component mounts
+  useEffect(() => {
+    setSorting(true);
+    return () => setSorting(false);
+  }, []);
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 py-16 sm:py-24">
       <div className="relative">
@@ -40,20 +96,26 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
               <div className="mx-auto max-w-2xl overflow-hidden rounded-xl shadow-lg">
                 <div className="bg-white p-4 h-64 flex items-center justify-center">
-                  <div className="animate-pulse-subtle text-center">
-                    <div className="flex justify-center space-x-1">
-                      {[35, 15, 80, 25, 65, 40, 55, 30].map((height, i) => (
+                  <div className="text-center w-full">
+                    <div className="flex justify-center space-x-2">
+                      {array.map((height, i) => (
                         <div 
                           key={i}
                           className="bg-primary w-8 rounded-t-md transition-all duration-500"
                           style={{ 
                             height: `${height}%`,
-                            animationDelay: `${i * 0.1}s`
+                            transition: 'height 0.5s ease-in-out'
                           }}
-                        ></div>
+                        >
+                          <div className="text-white font-bold text-sm mt-2">
+                            {height}
+                          </div>
+                        </div>
                       ))}
                     </div>
-                    <p className="mt-4 text-sm text-gray-500">Sorting in progress...</p>
+                    <p className="mt-4 text-sm text-gray-500">
+                      {sorting ? "Sorting in progress..." : "Sorting complete!"}
+                    </p>
                   </div>
                 </div>
               </div>
