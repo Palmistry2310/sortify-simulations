@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -24,13 +23,187 @@ class SortRequest(BaseModel):
 
 # Sorting algorithm implementations with history tracking
 def bubble_sort(input_array: List[int]) -> List[Dict[str, Any]]:
-    # ... keep existing code (bubble sort implementation)
+    """
+    Implementation of the bubble sort algorithm with history tracking
+    """
+    history = []
+    array = input_array.copy()
+    n = len(array)
+    
+    # Initial state
+    history.append({
+        "array": array.copy(),
+        "comparingIndices": [],
+        "sortedIndices": [],
+        "selectedIndices": [],
+        "pivotIndices": [],
+    })
+    
+    for i in range(n):
+        # Flag to optimize if no swaps are performed
+        swapped = False
+        
+        for j in range(0, n - i - 1):
+            # Record comparing indices
+            comparing_step = history[-1].copy()
+            comparing_step["comparingIndices"] = [j, j + 1]
+            history.append(comparing_step)
+            
+            if array[j] > array[j + 1]:
+                # Swap elements
+                array[j], array[j + 1] = array[j + 1], array[j]
+                swapped = True
+                
+                # Record the swap
+                swap_step = history[-1].copy()
+                swap_step["array"] = array.copy()
+                swap_step["selectedIndices"] = [j, j + 1]
+                history.append(swap_step)
+        
+        # Mark the last element as sorted
+        sorted_step = history[-1].copy()
+        sorted_step["sortedIndices"] = list(range(n - i - 1, n))
+        history.append(sorted_step)
+        
+        # If no swaps were performed, the array is already sorted
+        if not swapped:
+            break
+    
+    # Final state - all sorted
+    final_step = history[-1].copy()
+    final_step["sortedIndices"] = list(range(n))
+    final_step["comparingIndices"] = []
+    final_step["selectedIndices"] = []
+    history.append(final_step)
+    
+    return history
     
 def selection_sort(input_array: List[int]) -> List[Dict[str, Any]]:
-    # ... keep existing code (selection sort implementation)
+    """
+    Implementation of the selection sort algorithm with history tracking
+    """
+    history = []
+    array = input_array.copy()
+    n = len(array)
+
+    # Initial state
+    history.append({
+        "array": array.copy(),
+        "comparingIndices": [],
+        "sortedIndices": [],
+        "selectedIndices": [],
+        "pivotIndices": [],
+    })
+
+    for i in range(n):
+        min_index = i
+        # Highlight the current minimum
+        select_step = history[-1].copy()
+        select_step["selectedIndices"] = [min_index]
+        history.append(select_step)
+
+        for j in range(i + 1, n):
+            # Comparing indices
+            comparing_step = history[-1].copy()
+            comparing_step["comparingIndices"] = [j, min_index]
+            history.append(comparing_step)
+
+            if array[j] < array[min_index]:
+                min_index = j
+                # Highlight the new minimum
+                select_step = history[-1].copy()
+                select_step["selectedIndices"] = [min_index]
+                history.append(select_step)
+
+        # Swap the found minimum element with the first element
+        if min_index != i:
+            array[i], array[min_index] = array[min_index], array[i]
+
+            # Record the swap
+            swap_step = history[-1].copy()
+            swap_step["array"] = array.copy()
+            swap_step["selectedIndices"] = [i, min_index]
+            history.append(swap_step)
+
+        # Mark the sorted element
+        sorted_step = history[-1].copy()
+        sorted_step["sortedIndices"] = list(range(i + 1))
+        history.append(sorted_step)
+
+    # Final state - all sorted
+    final_step = history[-1].copy()
+    final_step["sortedIndices"] = list(range(n))
+    final_step["comparingIndices"] = []
+    final_step["selectedIndices"] = []
+    history.append(final_step)
+
+    return history
 
 def insertion_sort(input_array: List[int]) -> List[Dict[str, Any]]:
-    # ... keep existing code (insertion sort implementation)
+    """
+    Implementation of the insertion sort algorithm with history tracking
+    """
+    history = []
+    array = input_array.copy()
+    n = len(array)
+
+    # Initial state
+    history.append({
+        "array": array.copy(),
+        "comparingIndices": [],
+        "sortedIndices": [],
+        "selectedIndices": [],
+        "pivotIndices": [],
+    })
+
+    for i in range(1, n):
+        key = array[i]
+        j = i - 1
+
+        # Select the key element
+        select_step = history[-1].copy()
+        select_step["selectedIndices"] = [i]
+        history.append(select_step)
+
+        # Move elements of arr[0..i-1], that are greater than key, to one position ahead
+        # of their current position
+        while j >= 0 and array[j] > key:
+            # Comparing indices
+            comparing_step = history[-1].copy()
+            comparing_step["comparingIndices"] = [j, j + 1]
+            history.append(comparing_step)
+
+            array[j + 1] = array[j]
+
+            # Record the shift
+            shift_step = history[-1].copy()
+            shift_step["array"] = array.copy()
+            shift_step["selectedIndices"] = [j, j + 1]
+            history.append(shift_step)
+
+            j -= 1
+
+        array[j + 1] = key
+
+        # Record the insertion
+        insert_step = history[-1].copy()
+        insert_step["array"] = array.copy()
+        insert_step["selectedIndices"] = [j + 1]
+        history.append(insert_step)
+
+        # Mark the sorted portion
+        sorted_step = history[-1].copy()
+        sorted_step["sortedIndices"] = list(range(i + 1))
+        history.append(sorted_step)
+
+    # Final state - all sorted
+    final_step = history[-1].copy()
+    final_step["sortedIndices"] = list(range(n))
+    final_step["comparingIndices"] = []
+    final_step["selectedIndices"] = []
+    history.append(final_step)
+
+    return history
 
 def merge_sort(input_array: List[int]) -> List[Dict[str, Any]]:
     """
