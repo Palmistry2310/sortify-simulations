@@ -9,10 +9,9 @@ import {
   generateRandomArray,
   generateNearlySortedArray,
   generateReversedArray,
-  getSortingAlgorithm,
   getAlgorithmInfo,
-  countOperations,
 } from "@/utils/sortingAlgorithms";
+import { sortArray } from "@/utils/api";
 import { toast } from "sonner";
 
 const DEFAULT_ARRAY_SIZE = 20;
@@ -102,21 +101,30 @@ const Index = () => {
   }, [isPlaying, currentStepIndex, sortingHistory, speed, algorithm, comparisons, swaps]);
 
   // Run the current sorting algorithm
-  const runAlgorithm = () => {
+  const runAlgorithm = async () => {
     // Reset state
     setIsPlaying(false);
     setCurrentStepIndex(0);
     
-    // Get the sorting function
-    const sortFunction = getSortingAlgorithm(algorithm);
-    // Run the algorithm to generate history
-    const history = sortFunction([...array]);
-    setSortingHistory(history);
-    
-    // Count operations
-    const { comparisons: comps, swaps: swp } = countOperations(history);
-    setComparisons(comps);
-    setSwaps(swp);
+    try {
+      // Call the backend API
+      const response = await sortArray([...array], algorithm);
+      
+      // Update state with results
+      setSortingHistory(response.history);
+      setComparisons(response.stats.comparisons);
+      setSwaps(response.stats.swaps);
+    } catch (error) {
+      console.error("Error running algorithm:", error);
+      toast.error("Failed to run sorting algorithm", {
+        description: "There was an error connecting to the backend service.",
+      });
+      
+      // Reset history in case of error
+      setSortingHistory([]);
+      setComparisons(0);
+      setSwaps(0);
+    }
   };
 
   // Generate new array
