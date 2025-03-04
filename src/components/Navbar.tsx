@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="ml-2 text-xl font-semibold text-gray-900">
+              <span onClick={onGoHome} className="ml-2 text-xl font-semibold text-gray-900 cursor-pointer">
                 Sorting Visualizer
               </span>
             </div>
@@ -108,7 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
             <a
-              href="https://github.com/your-github-repo"
+              href="https://github.com/Priyanshu13104/sortify-simulations"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-900 flex items-center"
