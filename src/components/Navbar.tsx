@@ -25,6 +25,9 @@ const Navbar: React.FC<NavbarProps> = ({
     "insertion",
     "merge",
     "quick",
+    "heap",
+    "radix",
+    "bucket"
   ];
 
   const toggleDropdown = () => {
