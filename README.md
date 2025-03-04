@@ -1,69 +1,60 @@
-# Welcome to your Lovable project
+# Sorting Techniques Visualizer
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/3f1c8ec1-1ec3-4c70-9be6-fa292926e965
+The **Sorting Techniques Visualizer** is a web-based educational tool designed to help students understand and compare various sorting algorithms. The tool visually demonstrates the step-by-step process of different sorting techniques while providing insights into each algorithm’s performance. By offering an interactive and engaging experience, students can explore how each sorting algorithm behaves and understand their time complexities and efficiencies.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Sorting Algorithms**: The following sorting algorithms are included:
+  - Bubble Sort
+  - Selection Sort
+  - Insertion Sort
+  - Merge Sort
+  - Quick Sort
+  - Heap Sort
+  - Radix Sort
+  - Bucket Sort
+- **Real-time Visualization**: The sorting process will be visualized in a box taking up 70% of the screen. The visualization shows the sorting steps and animations for an immersive experience.
+- **User Input**: 
+  - Users can input custom arrays to see how the algorithms sort different datasets.
+  - Users can control the speed of the sorting visualization to observe fast or slow sorting actions.
+- **Educational Stats**: Real-time statistics such as the time complexity of the algorithm, the number of comparisons, and the number of swaps will be displayed.
+- **Side-by-side Comparison**: Users will be able to compare sorting algorithms by running them in parallel and observing differences in performance.
+- **Reset on Reload**: The tool will reset all data and settings when the page is reloaded, ensuring a fresh start.
 
-**Use Lovable**
+## Target Audience
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3f1c8ec1-1ec3-4c70-9be6-fa292926e965) and start prompting.
+This tool is intended for:
+- Students learning data structures and algorithms.
+- Educators who want to demonstrate sorting techniques visually in a classroom setting.
+- Anyone curious about how different sorting algorithms work.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technical Stack
 
-**Use your preferred IDE**
+- **Frontend**: 
+  - React.js for building a dynamic and interactive user interface.
+  - Tailwind CSS for styling and making the design vibrant and user-friendly.
+- **Backend**:
+  - Python for handling the core logic of the sorting algorithms.
+  - The sorting algorithms are implemented in Python for optimal performance and accuracy.
+- **Integration**: 
+  - React and Python are integrated to provide seamless communication between the user’s inputs and the sorting logic.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Conceptual Data Model
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- The tool does not store any persistent data. All user inputs (such as custom arrays) are processed in memory, and the settings will reset once the page is reloaded.
 
-Follow these steps:
+## Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js (for running the React frontend)
+- Python (for running the backend sorting algorithms)
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Steps to Set Up the Project
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/3f1c8ec1-1ec3-4c70-9be6-fa292926e965) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/sorting-techniques-visualizer.git
+   cd sorting-techniques-visualizer
