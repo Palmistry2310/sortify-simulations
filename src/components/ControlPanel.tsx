@@ -116,7 +116,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           <input
             type="range"
             min="5"
-            max="100"
+            max="50"
             step="5"
             value={arraySize}
             onChange={(e) => onArraySizeChange(parseInt(e.target.value))}

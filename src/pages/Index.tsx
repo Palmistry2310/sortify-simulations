@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -143,10 +142,6 @@ const Index = () => {
     setCurrentStepIndex(0);
     setIsPlaying(false);
     setSortingHistory([]);
-    
-    toast(`Generated ${arraySize} ${type.replace('-', ' ')} elements`, {
-      position: "top-right",
-    });
   };
 
   // Control functions
