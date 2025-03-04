@@ -58,3 +58,43 @@ This tool is intended for:
    ```bash
    git clone https://github.com/your-username/sorting-techniques-visualizer.git
    cd sorting-techniques-visualizer
+
+2. **Frontend Setup**
+   ```bash
+   npm install
+   npm run dev
+
+3. **Backend Setup**
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+
+4. **Launch Applicaiton**
+    - Once both the frontend and backend are running, open your browser and go to http://localhost to start using the sorting visualizer.
+
+## How to Use
+
+- **Select Array Size From the given Range**: Users can select prefered array size from the range 5 - 50.
+- **Adjust Speed**: Modify the speed of the visualization to observe the sorting steps at different paces.
+- **Select an Algorithm**: Choose any sorting algorithm from the list to see how it sorts the array.
+- **Reset**: Reload the page to reset the array and start again.
+
+## User Interface Design Principles
+
+- **Vibrant and Engaging**: The design will focus on a lively, interactive interface to engage students. The sorting visualization will be large and centered, taking up 70% of the screen.
+- **Educational Stats**: Alongside the visualization, real-time statistics (comparisons, time complexity) will be prominently displayed to enhance understanding.
+- **Controls**: Simple controls will be available for users to adjust the speed, input custom arrays, and compare algorithms.
+
+## Future Expansion
+
+- **Additional Sorting Algorithms**: More sorting techniques may be added in the future to expand the tool’s educational value.
+- **Mobile Support**: The application could be adapted to work on mobile devices for broader accessibility.
+- **Advanced Visualizations**: Future versions may include advanced visual effects or interactive tutorials to make the learning process even more engaging.
+
+## Contact
+
+For any questions or feedback, please reach out at:
+
+- **Email**: your-priyanshuprajapati13@gmail.com
+- **GitHub**: [your-username](https://github.com/Priyanshu13104)
+
