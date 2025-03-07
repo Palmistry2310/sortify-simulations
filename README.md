@@ -91,10 +91,4 @@ This tool is intended for:
 - **Mobile Support**: The application could be adapted to work on mobile devices for broader accessibility.
 - **Advanced Visualizations**: Future versions may include advanced visual effects or interactive tutorials to make the learning process even more engaging.
 
-## Contact
-
-For any questions or feedback, please reach out at:
-
-- **Email**: your-priyanshuprajapati13@gmail.com
-- **GitHub**: [your-username](https://github.com/Priyanshu13104)
 
